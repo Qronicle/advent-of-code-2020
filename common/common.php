@@ -36,3 +36,9 @@ function timer_end(string $string = null)
     $string = $string ?: "\nResult reached in %s seconds\n";
     echo sprintf($string, round($end - $__start, 3));
 }
+
+function dd($val)
+{
+    print_r($val);
+    die;
+}
