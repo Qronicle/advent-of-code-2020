@@ -37,8 +37,11 @@ function timer_end(string $string = null)
     echo sprintf($string, round($end - $__start, 3));
 }
 
-function dd($val)
+function dd()
 {
-    print_r($val);
+    foreach (func_get_args() as $arg) {
+        print_r($arg);
+        echo "\n";
+    }
     die;
 }
