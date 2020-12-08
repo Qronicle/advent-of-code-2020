@@ -45,3 +45,26 @@ function dd()
     }
     die;
 }
+
+function dump()
+{
+    foreach (func_get_args() as $arg) {
+        print_r($arg);
+        echo "\n";
+    }
+}
+
+abstract class AbstractSolution
+{
+    protected string $rawInput;
+
+    public function solve(int $part, string $inputFilename): string
+    {
+        $method = 'solvePart' . $part;
+        $this->rawInput = file_get_contents($inputFilename);
+        return $this->$method();
+    }
+
+    abstract protected function solvePart1(): string;
+    abstract protected function solvePart2(): string;
+}
