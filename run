@@ -18,6 +18,9 @@ require_once $dayPath . '/day' . $day . '.php';
 $className = 'Day' . $day;
 /** @var AbstractSolution $solution */
 $solution = new $className();
+$startTime = microtime(true);
 $result = $solution->solve($part, $inputFilename);
+$endTime = microtime(true);
 
 echo $result . "\n";
+echo "\e[90mDuration: " . round($endTime - $startTime, 5) . " sec\n";

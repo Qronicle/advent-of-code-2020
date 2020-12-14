@@ -2,11 +2,10 @@
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-timer_start();
 
 // Common functions ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function greatest_common_divisor($n, $m)
+function greatest_common_divisor(int $n, int $m): int
 {
     $n = abs($n);
     $m = abs($m);
@@ -17,24 +16,18 @@ function greatest_common_divisor($n, $m)
         : greatest_common_divisor($n, $m % $n);
 }
 
-function timer_start()
+function least_common_multiple(int $n, int $m): int
 {
-    global $__start;
-    $__start = microtime(true);
-}
-
-function timer_lap(string $string = null)
-{
-    timer_end($string);
-    timer_start();
-}
-
-function timer_end(string $string = null)
-{
-    global $__start;
-    $end = microtime(true);
-    $string = $string ?: "\nResult reached in %s seconds\n";
-    echo sprintf($string, round($end - $__start, 3));
+    $x = $n;
+    for ($y = 0; ; $x += $n) {
+        while ($y < $x) {
+            $y += $m;
+        }
+        if ($x == $y) {
+            break;
+        }
+    }
+    return $x;
 }
 
 function dd()
@@ -66,5 +59,6 @@ abstract class AbstractSolution
     }
 
     abstract protected function solvePart1(): string;
+
     abstract protected function solvePart2(): string;
 }
